@@ -13,7 +13,7 @@ const Footer = () => {
 
                 <div className="flex flex-col items-start gap-5">
                     <img
-                        src="src\assets\logo-footer.svg"
+                        src="/assets/logo-footer.svg"
                         alt="Alien World Logo"
                         className="w-48 sm:w-52 lg:w-56"
                     />
