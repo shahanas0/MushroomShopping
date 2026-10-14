@@ -1,19 +1,19 @@
+
 import React, { useState } from 'react'
 
 const Subscribe = () => {
-
   const [email, setEmail] = useState("")
   const [error, setError] = useState("")
 
   const handleSubscribe = (e) => {
     e.preventDefault()
 
-    if (!email) {
+    if (!email.trim()) {
       setError("Please enter your email")
       return
     }
 
-    if (!email.includes("@")) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Please enter a valid email")
       return
     }
@@ -24,40 +24,50 @@ const Subscribe = () => {
   }
 
   return (
-    <div className='relative w-full h-90'>
-      <div className='bg-amber-50 text-center p-20 absolute top-20 left-70 w-2/3 rounded-2xl'>
+    <div className="relative h-80 w-full sm:h-90 md:h-96">
+      <div className="absolute left-1/2 -bottom-10 w-[92%] -translate-x-1/2 rounded-2xl bg-amber-50 px-5 py-10 text-center sm:top-16 sm:w-[85%] sm:px-8 sm:py-14 md:top-20 md:w-2/3 md:p-16">
 
-        <h1 className='text-4xl font-bold'>
+        <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">
           Subscribe to our Newsletter
         </h1>
 
-        <p className='text-xl font-extralight mt-5 text-gray-600'>
+        <p className="mt-4 text-base font-extralight text-gray-600 sm:mt-5 sm:text-lg md:text-xl">
           Mushrooms are edible fungus that can provide several important nutrients.
         </p>
 
-        <form onSubmit={handleSubscribe} className='mt-5'>
+        <form
+          onSubmit={handleSubscribe}
+          className="mx-auto mt-5 w-full max-w-2xl"
+        >
+          <div className="flex flex-col gap-3 sm:flex-row sm:gap-0">
 
-          <input
-            type="email"
-            placeholder='Enter your Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className='border outline-orange-700 border-gray-500 px-5 py-5 w-1/3 rounded-l-2xl'
-          />
+            <input
+              type="email"
+              placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                setError("")
+              }}
+              aria-label="Email address"
+              aria-invalid={!!error}
+              className="w-full min-w-0 rounded-xl border border-gray-500 bg-white px-5 py-4 outline-orange-700 sm:w-2/3 sm:rounded-r-none sm:rounded-l-2xl sm:py-5"
+            />
 
-          <button
-            type="submit"
-            className='bg-orange-700 px-5 py-5 border border-orange-700 font-bold text-white rounded-r-2xl cursor-pointer hover:bg-amber-50 hover:border-2 hover:text-orange-700'
-          >
-            Subscribe
-          </button>
+            <button
+              type="submit"
+              className="w-full rounded-xl border border-orange-700 bg-orange-700 px-5 py-4 font-bold text-white transition hover:bg-amber-50 hover:text-orange-700 sm:w-auto sm:rounded-l-none sm:rounded-r-2xl sm:py-5"
+            >
+              Subscribe
+            </button>
+
+          </div>
 
           {error && (
-            <p className='text-red-500 mt-3'>
+            <p role="alert" className="mt-3 text-left text-sm text-red-500">
               {error}
             </p>
           )}
-
         </form>
 
       </div>
@@ -66,3 +76,4 @@ const Subscribe = () => {
 }
 
 export default Subscribe
+

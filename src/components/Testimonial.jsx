@@ -1,25 +1,45 @@
+
 import React from 'react'
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaStar } from 'react-icons/fa'
 
-const Testimonial = () => {
-
-  const testimonial = {
-    quote: "Mushrooms are edible fungus that can provide several important nutrients. The many kinds of mushroom have varying compositions and nutritional profiles.",
-    image: "https://img.magnific.com/free-photo/young-handsome-man-wearing-casual-tshirt-blue-background-happy-face-smiling-with-crossed-arms-looking-camera-positive-person_839833-12963.jpg?semt=ais_hybrid&w=740&q=80",
-    name: "Mandala Zookie"
-  }
-
-
+const Testimonial = ({ testimonial }) => {
   return (
-    <div className='border border-gray-300 w-3/4 flex flex-col gap-5 p-5'>
-      <FaQuoteLeft className='text-orange-700' />
-      <p className='text-gray-500'>{testimonial.quote}</p>
-      <div className='flex gap-5 border-t-2 border-gray-300 pt-3 text-gray-500 justify-center align-center'>
-        <img src={testimonial.image} alt="" className='w-[100px] rounded-full' />
-        <h1>{testimonial.name}</h1>
-      </div>
+    <div className="flex w-full flex-col items-center rounded-2xl border border-gray-200 bg-white px-5 py-8 text-center sm:px-8 sm:py-10">
+
+      <img
+        src={testimonial.image}
+        alt={testimonial.name}
+        className="mb-5 h-20 w-20 rounded-full object-cover sm:h-24 sm:w-24"
+      />
+
+      {/* <div className="mb-4 flex justify-center gap-1">
+        {[...Array(5)].map((_, index) => (
+          <FaStar
+            key={index}
+            className={
+              index < testimonial.rating
+                ? 'text-orange-500'
+                : 'text-gray-300'
+            }
+          />
+        ))}
+      </div> */}
+
+      <p className="mb-6 max-w-xl text-base leading-7 text-gray-600 sm:text-lg">
+        "{testimonial.review}"
+      </p>
+
+      <h2 className="text-xl font-bold text-gray-900">
+        {testimonial.name}
+      </h2>
+
+      <p className="mt-1 text-sm text-gray-500">
+        {testimonial.role}
+      </p>
+
     </div>
   )
 }
 
 export default Testimonial
+

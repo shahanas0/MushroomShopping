@@ -1,6 +1,6 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,12 +10,12 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (!username && !password) {
+    if (!username.trim() && !password) {
       setError("Please enter username and password");
       return;
     }
 
-    if (!username) {
+    if (!username.trim()) {
       setError("Please enter username");
       return;
     }
@@ -35,86 +35,105 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-orange-50 flex items-center justify-center px-5">
+    <div className="flex min-h-screen items-center justify-center bg-orange-50 px-3 py-4 sm:px-6 md:py-8 lg:h-screen lg:w-full lg:overflow-hidden lg:p-0">
 
+      <div className="flex w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-lg md:flex-row lg:h-full lg:max-w-none lg:rounded-none">
 
-
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg flex w-full max-w-5xl p-10">
-
-        {/* Image */}
-        <div className="hidden md:block w-1/2">
+        <div className="hidden w-full md:block md:w-1/2 lg:h-full">
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnk6ZGPAAn80mG64M0rfITlgrSwQBXSh1DWHq9JnbbAw&s=10"
             alt="Mushroom"
-            className="w-full h-full object-cover"
+            className="h-full min-h-0 w-full object-cover"
           />
         </div>
 
-        {/* Login Form */}
-        <div className="w-full md:w-1/2 p-10">
+        <div className="w-full p-5 sm:p-7 md:w-1/2 md:p-6 lg:flex lg:flex-col lg:justify-center lg:p-8 xl:px-14">
 
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 className="mb-1 text-2xl font-bold text-gray-800 sm:text-3xl">
             Welcome Back
           </h1>
 
-          <p className="text-gray-500 mb-8">
+          <p className="mb-4 text-sm text-gray-500 sm:mb-6 sm:text-base">
             Login to your mushroom shop account
           </p>
 
-          <form onSubmit={handleLogin} className="font-bold">
+          <form onSubmit={handleLogin}>
 
-            {/* Username */}
-            <div className="mb-5">
-
+            <div className="mb-3 sm:mb-4">
+              <label
+                htmlFor="username"
+                className="mb-1 block text-sm font-semibold text-gray-700"
+              >
+                Username
+              </label>
 
               <input
+                id="username"
                 type="text"
                 placeholder="Enter Username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-orange-700 placeholder-gray-500 placeholder:font-normal"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setError("");
+                }}
+                autoComplete="username"
+                className="w-full rounded-lg border-2 border-gray-300 px-4 py-2.5 outline-none transition focus:border-orange-700 placeholder:font-normal"
               />
             </div>
 
-            {/* Password */}
-            <div className="mb-5">
-
+            <div className="mb-3 sm:mb-4">
+              <label
+                htmlFor="password"
+                className="mb-1 block text-sm font-semibold text-gray-700"
+              >
+                Password
+              </label>
 
               <input
+                id="password"
                 type="password"
                 placeholder="Enter Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-orange-700 placeholder-gray-500 placeholder:font-normal"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+                autoComplete="current-password"
+                className="w-full rounded-lg border-2 border-gray-300 px-4 py-2.5 outline-none transition focus:border-orange-700 placeholder:font-normal"
               />
             </div>
 
-            {/* Error */}
             {error && (
-              <p className="text-red-500 text-sm mb-4">
+              <p role="alert" className="mb-3 text-sm text-red-500">
                 {error}
               </p>
             )}
 
-            {/* Button */}
             <button
               type="submit"
-              className="w-full bg-orange-700 text-white py-4 border rounded-lg font-semibold hover:bg-white hover:text-orange-700 hover:border-2 border-orange-700 cursor-pointer transition"
+              className="w-full cursor-pointer rounded-lg border-2 border-orange-700 bg-orange-700 py-3 text-base font-semibold text-white transition hover:bg-white hover:text-orange-700 sm:py-3"
             >
               Login
             </button>
 
           </form>
 
-          <p className="text-center text-gray-500 mt-6">
+          <p className="mt-4 text-center text-sm text-gray-500 sm:mt-5 sm:text-base">
             Don't have an account?
-            <span className="text-orange-700 font-semibold ml-1 cursor-pointer hover:underline">
-              <Link to={"/register"}>Register</Link>
-            </span>
+            <Link
+              to="/register"
+              className="ml-1 font-semibold text-orange-700 hover:underline"
+            >
+              Register
+            </Link>
           </p>
-          <div className="text-center mt-6">
-            <Link to={"/"}>
-              <p className="text-orange-700 font-bold text-xl animate-pulse"> ⬅ Back</p>
+
+          <div className="mt-4 text-center sm:mt-5">
+            <Link
+              to="/"
+              className="inline-block text-lg font-bold text-orange-700 transition hover:-translate-x-1 sm:text-xl"
+            >
+              ⬅ Back
             </Link>
           </div>
 
@@ -125,3 +144,4 @@ const Login = () => {
 };
 
 export default Login;
+

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BiAlignRight } from "react-icons/bi";
 
 const Products = () => {
-
     const MusroomProducts = [
         {
             id: 1,
@@ -339,103 +338,108 @@ const Products = () => {
     const [selectedMusroom, setSelectedMusroom] = useState(null);
 
     return (
-        <div className="px-25 py-15 ">
+        <div className="px-4 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-16 xl:px-25 xl:py-15">
 
             {selectedMusroom && (
-                <div className=" p-5 bg-gray-100 rounded-xl fixed z-50 h-screen top-0 left-0 w-200 shadow-2xl shadow-black">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-3 sm:p-5">
 
-                    <div className="border w-full h-full p-15 border-orange-700 rounded-xl">
+                    <div className="max-h-[95vh] w-full max-w-5xl overflow-y-auto rounded-xl bg-gray-100 p-3 shadow-2xl shadow-black sm:p-5">
 
+                        <div className="min-h-full rounded-xl border border-orange-700 p-4 sm:p-6 md:p-8 lg:p-10">
 
-                        <div className="flex gap-10">
+                            <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
 
-                            <div className="border-2 border-orange-700  rounded-lg p-3 w-1/2 h-auto">
-                                <img
-                                    src={selectedMusroom.image}
-                                    alt={selectedMusroom.name}
-                                    className=" rounded-lg "
-                                />
+                                <div className="w-full rounded-lg border-2 border-orange-700 p-3 md:w-1/2">
+                                    <img
+                                        src={selectedMusroom.image}
+                                        alt={selectedMusroom.name}
+                                        className="max-h-80 w-full rounded-lg object-contain sm:max-h-96"
+                                    />
+                                </div>
+
+                                <div className="w-full md:w-1/2">
+
+                                    <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
+                                        {selectedMusroom.name}
+                                    </h1>
+
+                                    <p className="mt-4 text-xl font-bold text-orange-700 sm:text-2xl">
+                                        ₹{selectedMusroom.price}
+                                    </p>
+
+                                    <p className="mt-4 text-base text-gray-600 sm:text-lg">
+                                        {selectedMusroom.description}
+                                    </p>
+
+                                    <p className="mt-3 text-sm sm:text-base">
+                                        <span className="font-bold">Category:</span>{" "}
+                                        {selectedMusroom.category}
+                                    </p>
+
+                                    <p className="mt-2 text-sm sm:text-base">
+                                        <span className="font-bold">Weight:</span>{" "}
+                                        {selectedMusroom.weight}
+                                    </p>
+
+                                    <p className="mt-2 text-sm sm:text-base">
+                                        <span className="font-bold">Stock:</span>{" "}
+                                        {selectedMusroom.stock}
+                                    </p>
+
+                                    <p className="mt-2 text-sm sm:text-base">
+                                        <span className="font-bold">Rating:</span>{" "}
+                                        {selectedMusroom.rating}
+                                    </p>
+
+                                    <button
+                                        onClick={() => setSelectedMusroom(null)}
+                                        className="mt-6 rounded border border-orange-700 bg-orange-700 px-8 py-2 text-lg font-bold text-white transition hover:bg-gray-200 hover:text-orange-700 sm:mt-8 sm:px-10 sm:text-xl"
+                                    >
+                                        Back
+                                    </button>
+
+                                </div>
+
                             </div>
-
-                            <div>
-
-                                <h1 className="text-4xl font-bold">
-                                    {selectedMusroom.name}
-                                </h1>
-
-                                <p className="text-2xl font-bold text-orange-700 mt-5">
-                                    ₹{selectedMusroom.price}
-                                </p>
-
-                                <p className="mt-5 text-lg text-gray-600">
-                                    {selectedMusroom.description}
-                                </p>
-
-                                <p className="mt-3">
-                                    <span className="font-bold">Category:</span>{" "}
-                                    {selectedMusroom.category}
-                                </p>
-
-                                <p className="mt-2">
-                                    <span className="font-bold">Weight:</span>{" "}
-                                    {selectedMusroom.weight}
-                                </p>
-
-                                <p className="mt-2">
-                                    <span className="font-bold">Stock:</span>{" "}
-                                    {selectedMusroom.stock}
-                                </p>
-
-                                <p className="mt-2">
-                                    <span className="font-bold">Rating:</span>{" "}
-                                    {selectedMusroom.rating}
-                                </p>
-
-                                <button
-                                    onClick={() => setSelectedMusroom(null)}
-                                    className="mt-10 px-10 text-xl font-bold py-2 bg-orange-700 text-white rounded hover:border-2 hover:bg-gray-200 hover:border-orange-700 hover:text-orange-700"
-                                >
-                                    Back
-                                </button>
-
-                            </div>
-
                         </div>
                     </div>
                 </div>
             )}
 
-            <div className="grid grid-cols-5 gap-7 relative">
+            <div className="relative grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
 
                 {MusroomProducts.map((musroom) => (
 
                     <div
                         key={musroom.id}
-                        className="border p-5 rounded-lg shadow-gray-500 shadow-2xl hover:scale-105 duration-500 bg-white hover:bg-gray-200"
+                        className="min-w-0 rounded-lg border bg-white p-3 shadow-2xl shadow-gray-500 transition duration-500 hover:scale-[1.02] hover:bg-gray-200 sm:p-4 lg:p-5"
                     >
 
                         <img
                             src={musroom.image}
                             alt={musroom.name}
-                            className="w-full h-50 object-cover"
+                            loading="lazy"
+                            className="h-40 w-full rounded-md object-cover sm:h-44 md:h-48 lg:h-50"
                         />
 
-                        <h1 className="text-lg font-bold mt-4">
+                        <h1 className="mt-4 wrap-break-word text-base font-bold sm:text-lg">
                             {musroom.name}
                         </h1>
 
-                        <div className="flex justify-between items-center mt-3">
+                        <div className="mt-3 flex items-center justify-between gap-2">
 
-                            <p className="font-extrabold text-xl text-orange-700">
+                            <p className="text-lg font-extrabold text-orange-700 sm:text-xl">
                                 ₹{musroom.price}
                             </p>
 
-                            <div
+                            <button
+                                type="button"
                                 onClick={() => setSelectedMusroom(musroom)}
-                                className="text-3xl font-extrabold cursor-pointer text-orange-700 hover:text-orange-500"
+                                aria-label={`View ${musroom.name} details`}
+                                className="shrink-0 cursor-pointer text-2xl font-extrabold text-orange-700 transition hover:text-orange-500 sm:text-3xl"
                             >
                                 <BiAlignRight />
-                            </div>
+                            </button>
 
                         </div>
 
@@ -447,5 +451,6 @@ const Products = () => {
 
         </div>
     );
-}
+};
+
 export default Products;
