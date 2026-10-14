@@ -39,7 +39,7 @@ const Header = () => {
             <div className="relative flex items-center justify-between px-4 py-4 sm:px-6 lg:px-10 xl:px-20">
                 <Link to="/" onClick={closeMenu} className="shrink-0">
                     <img
-                        src="src/assets/logo.svg"
+                        src="src\assets\logo.svg"
                         alt="Shopping Logo"
                         className="h-10 w-auto sm:h-12"
                     />
